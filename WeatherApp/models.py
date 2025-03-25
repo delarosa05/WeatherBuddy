@@ -19,3 +19,4 @@ class Users(models.Model):
     createdAt = models.DateField(default=timezone.now)
 
 #Para las migraciones: python manage.py makemigrations --> python manage.py migrate 
+# INSTALAR POSTGRESQL
