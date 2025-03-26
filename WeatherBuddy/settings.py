@@ -75,15 +75,11 @@ WSGI_APPLICATION = 'WeatherBuddy.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    """'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }"""
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rellenar con el nombre de la base de datos',
-        'USER': 'a rellenar',
-        'PASSWORD': 'a rellenar',
+        'NAME': 'weatherapp',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'DATABASE_PORT': '5432',
     }
