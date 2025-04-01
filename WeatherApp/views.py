@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from WeatherApp.models import *
 from django.contrib.auth import authenticate
+from rest_framework import viewsets
+from WeatherApp.serializer import *
 
 # Create your views here.
 
@@ -19,3 +21,12 @@ def checkLogin(request: HttpRequest):
         return render(request, "200login.html", {"email":email})
     else:
         return HttpResponse("error")
+    
+
+class UserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+class MeasureView(viewsets.ModelViewSet):
+    serializer_class = MeasureSerializer
+    queryset = Measure.objects.all()   
