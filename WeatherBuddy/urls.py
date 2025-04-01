@@ -21,7 +21,5 @@ from WeatherApp import urls as wurls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login),
-    path('checkLogin/', views.checkLogin),
     path('main/', include(wurls))
 ]

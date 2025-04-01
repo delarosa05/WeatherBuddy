@@ -1,32 +1,32 @@
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from rest_framework.response import Response
 from WeatherApp.models import *
 from django.contrib.auth import authenticate
-from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
+
+from rest_framework.views import APIView
 from WeatherApp.serializer import *
 
 # Create your views here.
 
-#Plantilla de formulario de login
-def login(request):
-    return render(request, "login.html") 
 
-#Comprobacion de que el usuario existe
-def checkLogin(request: HttpRequest): 
-    email = request.GET["email"] #Recupera datos del input llamado email
-    password = request.GET["password"]
-    user = authenticate(request, username=email, password=password)  #NECESARIO ENCRIPTAR CONTRASEÑAS PARA QUE FUNCIONES
-    if user is not None:
-        # Login successful
-        return render(request, "200login.html", {"email":email})
-    else:
-        return HttpResponse("error")
-    
+class UserMeasuresAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, userIdreq):
+        if request.user.id != int(userIdreq):
+            raise PermissionDenied("You do not have permission to access this data")
+        
+        measures = Measure.objects.filter(Measure.us).order_by(Measure.createdAt).first()
+        serializer = MeasureSerializer(measures, many=True)
+        return Response(serializer.data)
 
-class UserView(viewsets.ModelViewSet):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
-
-class MeasureView(viewsets.ModelViewSet):
-    serializer_class = MeasureSerializer
-    queryset = Measure.objects.all()   
+class UserAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, userIdreq):    
+        try:
+            user = Measure.objects.filter(id =userIdreq)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        except (Exception):
+            return Response(Exception)

@@ -1,12 +1,9 @@
 from django.urls import path, include
 from rest_framework import routers
-from WeatherApp.views import MeasureView,UserView
+from WeatherApp.views import UserMeasuresAPIView, UserAPIView
 
-#api versioning
-router = routers.DefaultRouter()
-router.register(r'users', UserView)
-router.register(r'measures', MeasureView)
 
 urlpatterns = [
-    path('api/v1', include(router.urls))
+    path('measures/<int:userId>/', UserMeasuresAPIView.as_view(), name='user-measures'),
+    path('users/<int:userId>/', UserAPIView.as_view(), name = "users")
 ]
