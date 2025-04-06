@@ -16,14 +16,17 @@ class UserSerializer(serializers.ModelSerializer):
         if User.objects.filter(email=validated_data['email']).exists():
             raise serializers.ValidationError({"email": "Este email ya está registrado."})
         
-        user = User.objects.create_user(
+        user = User.objects.create_user(  #Crea un usuario validando los siguientes aspectos
             name=validated_data['name'],
             surname= validated_data['surname'],
             email=validated_data.get('email', ''),
             password= make_password(validated_data['password'])
         )
         return user
-
+    
+    def update(self, validated_data):
+        return False
+    
 class MeasureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measure

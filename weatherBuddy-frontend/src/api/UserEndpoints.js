@@ -12,9 +12,18 @@ async function register(datos) {
         
 }
 
-function login(data) {
-    return axios.post("http://localhost:8000/main/login", data)  //falta por implementar ruta en el back
-}
+const login = async (email, password) => {
+    try {
+      const response = await axios.post("http://localhost:8000/main/login/", {
+        email,
+        password,
+      });
+  
+     return response.data
+    } catch (error) {
+      throw new Error(error )
+    }
+  };
 
 export {
     register,
