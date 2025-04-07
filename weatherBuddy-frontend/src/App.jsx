@@ -3,6 +3,7 @@ import './App.css'
 import "../src/pages/register"
 import "../src/pages/login";
 import LoginPage from "../src/pages/login";
+import MeasuresPage from "./pages/measure";
 function App() {
   return (
     <BrowserRouter>
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<Navigate to="/register" />} />  //Navigate para redirecciona a /register 
         <Route path= "/register" element={<register />}/> //devuelve la pagina register.jsx cuando accedemos a /register
         <Route path="/login" element={<LoginPage />}/>
+        <Route path="/measures" element={<MeasuresPage/>}/>
       </Routes>
     </BrowserRouter>
   )

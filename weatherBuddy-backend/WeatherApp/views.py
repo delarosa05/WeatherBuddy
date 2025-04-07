@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from WeatherApp.models import *
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from WeatherApp.serializer import *
@@ -11,15 +11,26 @@ from django.contrib.auth import authenticate
 # Create your views here.
 
 
-class UserMeasuresAPIView(APIView):
+class UserMeasuresView(generics.ListAPIView):
+    serializer_class = MeasureSerializer
     permission_classes = [IsAuthenticated]
-    def get(self, request, userId):
-        if request.user.id != int(userId):
-            return Response(status=403, data="You do not have permission")
-        else:
-            measures = Measure.objects.filter(userId = request.user.id).order_by(Measure.createdAt).first()
+
+    def get(self, request):
+        try:
+            # Aquí obtienes al usuario autenticado
+            user = request.user  # Esto asegura que el usuario autenticado sea el que está haciendo la solicitud
+
+            # Filtra las medidas por el usuario
+            measures = Measure.objects.filter(userId=user).order_by('-createdAt')[:1]  # Muestra la medida más reciente
+
+            # Serializa las medidas
             serializer = MeasureSerializer(measures, many=True)
-            return Response(serializer.data)
+
+            # Devuelve las medidas serializadas como respuesta
+            print(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #Clase encargada de la gestion de usuarios, get para ver perfil y post para el registro de usuarios
 class UserAPIView(APIView):
@@ -42,18 +53,23 @@ class UserRegisterView(APIView):
                 if serializer.is_valid():  
                     user.userId = request.user.id
                     user = serializer.save()
-                    return Response({
+                    return HttpResponse({
                     'user': UserSerializer(user).data,
                     'message': 'Usuario creado exitosamente'
             }, status=status.HTTP_201_CREATED)
                 return HttpResponse(serializer.errors,status=status.HTTP_400_BAD_REQUEST )
         
 class UserLoginView(APIView):
-      def post(self, request):
-        email = request.data.get("email")
-        password = request.data.get("password")
+    def post(self, request):
+        print(request.data)
+        serializer = LoginSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        user = authenticate(username=email, password=password)
+        email = serializer.validated_data['email']
+        password = serializer.validated_data['password']
+
+        user = authenticate(request, email=email, password=password)
 
         if user:
             refresh = RefreshToken.for_user(user)
@@ -61,11 +77,8 @@ class UserLoginView(APIView):
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
                 'user_id': user.id,
-                'email': user.username,
+                'email': user.email,
                 'message': 'Login exitoso',
             }, status=status.HTTP_200_OK)
         else:
-            return Response(
-                {"error": "Credenciales inválidas"},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
+            return Response({"error": "Credenciales inválidas"}, status=status.HTTP_401_UNAUTHORIZED)

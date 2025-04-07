@@ -132,9 +132,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
-]
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 
 #CORS_ALLOW_CREDENTIALS = False
 
@@ -143,3 +141,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+AUTHENTICATION_BACKENDS = [
+    'WeatherApp.authentication.EmailBackend',  # Ajusta según el nombre real de tu app
+]
+
+AUTH_USER_MODEL = 'WeatherApp.User'  # Ajusta si tu app no se llama WeatherApp

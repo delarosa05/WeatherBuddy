@@ -15,13 +15,13 @@ async function register(datos) {
 const login = async (email, password) => {
     try {
       const response = await axios.post("http://localhost:8000/main/login/", {
-        email,
-        password,
+        "email": email,
+        "password": password
       });
   
-     return response.data
+    return response.data
     } catch (error) {
-      throw new Error(error )
+      throw new Error("Error "+error.status+" :Email o contraseña incorrectos")
     }
   };
 

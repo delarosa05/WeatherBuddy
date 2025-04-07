@@ -1,6 +1,7 @@
 // pages/LoginPage.jsx
 import { useState } from "react";
 import { login } from "../api/UserEndpoints"; // Importa la función del servicio
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,8 @@ const LoginPage = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,27 +24,27 @@ const LoginPage = () => {
     e.preventDefault();
     setError(""); // Limpia los errores al intentar hacer login
     setSuccess(""); // Limpia los mensajes de éxito
-
     try {
       const data = await login(formData.email, formData.password); // Llama al servicio de login
       localStorage.setItem("access", data.access); // Guarda el token en localStorage
       localStorage.setItem("refresh", data.refresh);
       setSuccess("Inicio de sesión exitoso!");
-      navigation.navigate('/measures')
+      navigate('/measures')
     } catch (err) {
       setError(err.message); // Muestra el error si las credenciales son incorrectas
     }
   };
 
   return (
+
     <div style={styles.container}>
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
-          name="username"
+          name="email"
           placeholder="Usuario"
-          value={formData.username}
+          value={formData.email}
           onChange={handleChange}
           style={styles.input}
         />
@@ -59,6 +61,7 @@ const LoginPage = () => {
       {error && <p style={styles.error}>{error}</p>}
       {success && <p style={styles.success}>{success}</p>}
     </div>
+    
   );
 };
 
