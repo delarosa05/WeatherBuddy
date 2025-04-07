@@ -60,6 +60,7 @@ const LoginPage = () => {
       </form>
       {error && <p style={styles.error}>{error}</p>}
       {success && <p style={styles.success}>{success}</p>}
+      <p>Aun no tienes cuenta  <a href="/register">Create una!</a></p>
     </div>
     
   );

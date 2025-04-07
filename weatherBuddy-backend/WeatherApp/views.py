@@ -33,8 +33,8 @@ class UserMeasuresView(generics.ListAPIView):
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #Clase encargada de la gestion de usuarios, get para ver perfil y post para el registro de usuarios
-class UserAPIView(APIView):
-    #permission_classes = [IsAuthenticated]
+class UserAPIView(APIView): #MODIFICAR
+    permission_classes = [IsAuthenticated]
     def get(self, request):    
         try:
             reqId = request.user.id
@@ -47,7 +47,7 @@ class UserAPIView(APIView):
         except Exception as e:
             return HttpResponse(e)
 
-class UserRegisterView(APIView):
+class UserRegisterView(APIView): #MODIFICAR
         def post(self, request):
                 serializer = UserSerializer(data=request.data)
                 if serializer.is_valid():  
@@ -59,9 +59,9 @@ class UserRegisterView(APIView):
             }, status=status.HTTP_201_CREATED)
                 return HttpResponse(serializer.errors,status=status.HTTP_400_BAD_REQUEST )
         
-class UserLoginView(APIView):
+class UserLoginView(APIView): #HECHO
     def post(self, request):
-        print(request.data)
+        #print(request.data) usado para depurar
         serializer = LoginSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
