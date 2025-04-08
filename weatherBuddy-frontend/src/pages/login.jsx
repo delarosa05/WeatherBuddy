@@ -1,7 +1,8 @@
 // pages/LoginPage.jsx
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { login } from "../api/UserEndpoints"; // Importa la función del servicio
 import { useNavigate } from "react-router-dom"
+import "./login.css"
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -34,19 +35,24 @@ const LoginPage = () => {
       setError(err.message); // Muestra el error si las credenciales son incorrectas
     }
   };
+    useEffect(() => {
+        document.body.className = "login-page"; // Añade la clase 'login-page' al body
+        return () => {
+            document.body.className = ""; // Limpia la clase al salir de la página
+        };
+    }, []);
 
   return (
-
-    <div style={styles.container}>
+    <div className="container">
       <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           name="email"
           placeholder="Usuario"
           value={formData.email}
           onChange={handleChange}
-          style={styles.input}
+          className="input"
         />
         <input
           type="password"
@@ -54,53 +60,16 @@ const LoginPage = () => {
           placeholder="Contraseña"
           value={formData.password}
           onChange={handleChange}
-          style={styles.input}
+          className="input"
         />
-        <button type="submit" style={styles.button}>Entrar</button>
+        <button type="submit" className="button">Entrar</button>
       </form>
-      {error && <p style={styles.error}>{error}</p>}
-      {success && <p style={styles.success}>{success}</p>}
-      <p>Aun no tienes cuenta  <a href="/register">Create una!</a></p>
+      {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
+      <p>Aun no tienes cuenta <a href="/register">¡Crea una!</a></p>
     </div>
-    
   );
 };
 
-const styles = {
-  container: {
-    maxWidth: "400px",
-    margin: "100px auto",
-    padding: "2rem",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    textAlign: "center",
-    backgroundColor: "#f9f9f9",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  },
-  input: {
-    padding: "0.8rem",
-    fontSize: "1rem",
-  },
-  button: {
-    padding: "0.8rem",
-    backgroundColor: "#007bff",
-    color: "#fff",
-    border: "none",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
-  error: {
-    color: "red",
-    marginTop: "1rem",
-  },
-  success: {
-    color: "green",
-    marginTop: "1rem",
-  },
-};
 
 export default LoginPage;
