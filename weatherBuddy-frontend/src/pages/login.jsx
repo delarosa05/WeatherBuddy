@@ -43,6 +43,7 @@ const LoginPage = () => {
     }, []);
 
   return (
+    <div className="login-overlay">
     <div className="container">
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit} className="form">
@@ -67,6 +68,7 @@ const LoginPage = () => {
       {error && <p className="error">{error}</p>}
       {success && <p className="success">{success}</p>}
       <p>Aun no tienes cuenta <a href="/register">¡Crea una!</a></p>
+    </div>
     </div>
   );
 };

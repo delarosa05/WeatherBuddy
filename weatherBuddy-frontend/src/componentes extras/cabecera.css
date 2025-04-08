@@ -1,0 +1,21 @@
+.cabecera {
+    background-color: red; /* Color de fondo */
+    height: 80px; /* Altura de la cabecera */
+    display: flex; /* Activa Flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    padding-left: 20px; /* Añade espacio desde el borde izquierdo */
+    position: fixed; /* Fija la cabecera */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 1000; /* Asegura que esté arriba de otros elementos */
+}
+
+
+.cabecera-titulo {
+    color: white; /* Color del texto */
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-family: Arial, sans-serif; /* Fuente del texto */
+    margin: 0; /* Elimina el margen predeterminado */
+}
