@@ -1,10 +1,10 @@
 .cabecera {
-    background-color: red; /* Color de fondo */
+    background-color: rgb(146, 168, 227); /* Color de fondo */
     height: 80px; /* Altura de la cabecera */
     display: flex; /* Activa Flexbox */
     align-items: center; /* Centra verticalmente */
-    justify-content: flex-start; /* Alinea el contenido a la izquierda */
-    padding-left: 20px; /* Añade espacio desde el borde izquierdo */
+    justify-content: space-between; /* Distribuye el contenido: izquierda y derecha */
+    padding: 0 20px; /* Espacio interno horizontal en los extremos */
     position: fixed; /* Fija la cabecera */
     top: 0;
     left: 0;
@@ -12,10 +12,49 @@
     z-index: 1000; /* Asegura que esté arriba de otros elementos */
 }
 
+.cabecera-contenido {
+    display: flex; /* Activa Flexbox para el logo y el título */
+    align-items: center; /* Centra verticalmente el logo y el texto */
+}
 
 .cabecera-titulo {
     color: white; /* Color del texto */
     font-size: 1.5rem; /* Tamaño del texto */
     font-family: Arial, sans-serif; /* Fuente del texto */
     margin: 0; /* Elimina el margen predeterminado */
+}
+
+.cabecera-logo {
+    background-image: url('../assets/Logo.png'); /* Ruta de la imagen del logo */
+    background-size: contain; /* Ajusta el tamaño para que se mantenga dentro de su contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 100px; /* Altura del logo */
+    width: 100px; /* Anchura del logo */
+    margin-right: 10px; /* Espacio entre el logo y el texto */
+}
+.cabecera-boton-contenedor {
+    display: flex; /* Activa Flexbox para el botón */
+    align-items: center; /* Centra el botón verticalmente */
+    justify-content: flex-end; /* Mantén el botón alineado hacia la derecha */
+    margin-right: 40px; /* Añade un margen derecho para separar del borde */
+}
+
+.cabecera-boton {
+    background-color: white; /* Fondo del botón */
+    color: rgb(220, 98, 98); /* Color del texto */
+    text-decoration: none; /* Quita el subrayado */
+    padding: 8px 16px; /* Espaciado interno */
+    border-radius: 20px; /* Esquinas redondeadas */
+    font-size: 1rem; /* Tamaño del texto */
+    font-family: Arial, sans-serif; /* Fuente */
+    font-weight: bold; /* Negrita */
+    border: 2px solid rgb(216, 142, 142); /* Borde */
+    cursor: pointer; /* Cambia el cursor al pasar */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Animación suave */
+}
+
+.cabecera-boton:hover {
+    background-color: rgb(219, 99, 99); /* Fondo rojo al pasar el cursor */
+    color: white; /* Texto blanco al pasar el cursor */
 }

@@ -4,7 +4,13 @@ import "./cabecera.css"
 const Cabecera = () => {
     return (
         <header className="cabecera">
-            <h1 className="cabecera-titulo"> TITULO </h1>
+            <div className="cabecera-contenido">
+                <div className="cabecera-logo"></div> {/* Contenedor para el logo */}
+                <h1 className="cabecera-titulo">WeatherBuddy</h1>
+            </div>
+            <div className="cabecera-boton-contenedor">
+                <a href="/login" className="cabecera-boton">Iniciar Sesión</a>
+            </div>
         </header>
     );
 };
