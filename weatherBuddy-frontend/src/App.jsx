@@ -6,6 +6,7 @@ import LoginPage from "../src/pages/login";
 import MeasuresPage from "./pages/measure";
 import InicioPage from "./pages/inicio";
 import Cabecera from "./componentes extras/cabecera";
+import Pie_Pagina from "./componentes extras/pie_Pagina";
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/measures" element={<MeasuresPage/>}/>
         <Route path="/inicio" element={<InicioPage/>}/>
       </Routes>
+    <Pie_Pagina />
     </BrowserRouter>
   )
 }

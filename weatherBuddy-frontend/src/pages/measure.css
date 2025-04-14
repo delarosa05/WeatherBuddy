@@ -1,0 +1,74 @@
+/* measure.css */
+
+/* Aplica el fondo a toda la pantalla */
+body {
+    margin: 0; /* Elimina márgenes */
+    background: linear-gradient(to bottom, #87CEEB, #FFFFFF); /* Degradado azul a blanco */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    overflow: hidden; /* Elimina scroll */
+}
+
+/* Contenedor principal */
+.measure-page {
+    max-width: 800px;
+    margin: 0 auto; /* Centra horizontalmente */
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex; /* Usa Flexbox */
+    flex-direction: column; /* Organiza los elementos verticalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+}
+
+/* Contenedor superior */
+.header-container {
+    background-color: white; /* Fondo blanco */
+    border: 1px solid #ddd; /* Bordes sutiles */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 1rem;
+    margin-bottom: 1rem; /* Espaciado debajo del contenedor */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.header-container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333; /* Color del texto */
+}
+
+.header-container p {
+    margin: 0.5rem 0 0; /* Espaciado entre título y fecha */
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Tarjetas */
+.measure-row {
+    display: flex; /* Organiza los contenedores en fila */
+    justify-content: space-between; /* Espacia los elementos horizontalmente */
+    gap: 1rem; /* Espaciado entre los contenedores */
+    padding: 0 10px; /* Espaciado interno para evitar que toquen los bordes */
+}
+
+.measure-card {
+    background-color: white; /* Fondo blanco */
+    border: 1px solid #ddd; /* Bordes sutiles */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 1rem;
+    flex: 1; /* Asegura que los contenedores ocupen el mismo tamaño */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.measure-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.error {
+    color: red;
+    margin-top: 1rem;
+}
+

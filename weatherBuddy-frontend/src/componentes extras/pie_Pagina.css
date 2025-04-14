@@ -1,0 +1,11 @@
+/* pie_Pagina.css */
+
+.pie-pagina {
+    background-color: rgb(37, 36, 36); /* Fondo negro */
+    height: 75px; /* Altura del pie de página, ajustable */
+    width: 100%; /* Ocupa todo el ancho */
+    position: fixed; /* Fijado al final de la ventana */
+    bottom: 0; /* Alineado al borde inferior */
+    left: 0; /* Asegura que comience desde el lado izquierdo */
+    z-index: 1000; /* Garantiza que siempre esté visible encima de otros elementos */
+}
