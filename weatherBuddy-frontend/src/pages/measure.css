@@ -10,24 +10,29 @@ body {
 
 /* Contenedor principal */
 .measure-page {
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto; /* Centra horizontalmente */
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
+    background-color: transparent;
     height: 100vh; /* Ocupa toda la altura de la pantalla */
     display: flex; /* Usa Flexbox */
     flex-direction: column; /* Organiza los elementos verticalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
+    justify-content: flex-start; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    padding-top: 100px; /* Añade 100px de espacio aribba de margen */
 }
 
 /* Contenedor superior */
 .header-container {
+    max-width: 100%;
+    text-align: center;
     background-color: white; /* Fondo blanco */
     border: 1px solid #ddd; /* Bordes sutiles */
     border-radius: 8px; /* Esquinas redondeadas */
     padding: 1rem;
-    margin-bottom: 1rem; /* Espaciado debajo del contenedor */
+    margin-bottom: 5rem; /* Espaciado debajo del contenedor */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
@@ -38,8 +43,8 @@ body {
 }
 
 .header-container p {
-    margin: 0.5rem 0 0; /* Espaciado entre título y fecha */
-    font-size: 1rem;
+    margin: 1rem 0 0; /* Espaciado entre título y fecha */
+    font-size: 1.2rem;
     color: #555;
 }
 
@@ -47,8 +52,9 @@ body {
 .measure-row {
     display: flex; /* Organiza los contenedores en fila */
     justify-content: space-between; /* Espacia los elementos horizontalmente */
-    gap: 1rem; /* Espaciado entre los contenedores */
+    gap: 2rem; /* Espaciado entre los contenedores */
     padding: 0 10px; /* Espaciado interno para evitar que toquen los bordes */
+    width: 90%;
 }
 
 .measure-card {

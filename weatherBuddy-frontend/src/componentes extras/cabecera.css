@@ -17,6 +17,14 @@
     align-items: center; /* Centra verticalmente el logo y el texto */
 }
 
+.cabecera-link {
+    display: flex; /* Asegura que el logo y el título estén alineados en línea */
+    align-items: center; /* Centra verticalmente el logo y el título */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    color: inherit; /* Hereda el color del texto definido para el título */
+}
+
+
 .cabecera-titulo {
     color: white; /* Color del texto */
     font-size: 1.5rem; /* Tamaño del texto */
